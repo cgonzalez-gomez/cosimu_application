@@ -20,7 +20,7 @@ RNGkind("L'Ecuyer-CMRG")
 
 # list the parameters that needs to be load from real (even if averaged) data (add script)
 
-load("~/fig2/mean_modes_dist.Rdata")
+load("data/mean_modes_dist.Rdata")
 
 # Parametrization for the primary and secondary signatures
 ## Primary
@@ -35,7 +35,7 @@ nr_noise <- c(0.02,0.1)
 list_pDEG <- list(c(p_up=0.1, p_down=0.1),
                   c(p_up=0.05, p_down=0.15))
 
-p_nb_mol_ctrl <- readRDS("~/fig2/ptt_real.RDS")
+p_nb_mol_ctrl <- readRDS("data/ptt_real.RDS")
 p_nb_mol_ctrl <- p_nb_mol_ctrl[!is.na(p_nb_mol_ctrl)]
 gene_names <- names(p_nb_mol_ctrl)
 nb_genes = length(gene_names)
