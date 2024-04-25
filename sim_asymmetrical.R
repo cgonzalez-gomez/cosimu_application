@@ -5,41 +5,22 @@ library(purrr)
 library(tictoc)
 source("simulation_pipeline.R")
 
-
-
-# Save paths
-args <- commandArgs(trailingOnly=TRUE)
-path <- args[1] # ouput directory pathway 
+path <- "/output_dir/" 
 save_param <- paste0(path,"df_param.RDS")
-base_seed <- as.integer(args[2])  #initial seed
+base_seed <- 15
 
-# Mean of the gamma distribution  
-mean_gamma <- function(shape,scale) shape*scale
+# Load distribution parameters inferred from real data
+dist <- cosimu::load_dist("data/real_asymmetrical_dist.yml")
 
 # Random number generator
 RNGkind("L'Ecuyer-CMRG")
 
-# list the parameters that needs to be load from real (even if averaged) data (add script)
-
-
-load("data/real_modes_dist.Rdata")
 
 # Parametrization for the primary and secondary signatures
 ## Primary
-submod_transition <- "cop"
-copula_submod <- "Frank"
-rho_submod <- 0.9
-eps_submod <- 1e-3
-optim_method_submod <- "Brent"
-proba_transition <- "cop"
-copula_prob<- "Frank"
-theta_prob <- 10
-nbins_prob <- 1e3
-
 nr_noise <- 0.02
 pDEG <- 0.2
-alpha <- sum(dens.up)/sum(c(dens.up,dens.down))
-list_pDEG <- list(c(p_up=pDEG*alpha, p_down=pDEG*(1-alpha)))
+list_pDEG <- list(c(p_up=pDEG*dist$alpha, p_down=pDEG*(1-dist$alpha)))
 
 p_nb_mol_ctrl <- readRDS("data/ptt_real.RDS")
 p_nb_mol_ctrl <- p_nb_mol_ctrl[!is.na(p_nb_mol_ctrl)]
@@ -58,6 +39,16 @@ ind_param <- map(rep(list_pDEG,each=nb_tech_rep),function(pDEG){
 })
 
 ## Secondary
+submod_transition <- "cop"
+copula_submod <- "Frank"
+rho_submod <- 0.9
+eps_submod <- 1e-3
+optim_method_submod <- "Brent"
+proba_transition <- "cop"
+copula_prob<- "Frank"
+theta_prob <- 10
+nbins_prob <- 1e3
+
 set.seed(100)
 cs <- c(rbeta(300,5,1.2),rbeta(200,1.5,3))
 
