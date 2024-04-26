@@ -1,0 +1,34 @@
+dist: output of infer_dist function. See the package cosimu for details
+  prop_sm_up:
+  prop_sm_down:
+  up_means:
+  down_means:
+  nr_means: 
+  nr_sd: 
+  shapes.up:
+  scales.up:
+  shapes.down:
+  scales.down:
+  alpha: 
+signatures: See the package cosimu (class_SignatureObj) for details on the parameters.
+  initial_base: 
+  nb_tech_rep: 
+  base_expression: 
+  entity_id: 
+  primary:
+    nb_genes: 
+    list_pDEG: list of vectors contraining p_up and p_down values for each signature
+  secondary:
+    mod_transition: 
+    transition_mat: linearized matrix (by col)
+    nr_noise: 
+    connectivity_score: 
+    submod_transition: 
+    copula_submod: 
+    rho_submod: 
+    eps_submod: 
+    optim_method_submod: 
+    proba_transition: 
+    copula_prob: 
+    theta_prob: 
+    nbins_prob: 

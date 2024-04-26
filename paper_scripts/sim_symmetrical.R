@@ -2,7 +2,7 @@
 
 # Imports
 library(purrr)
-source("simulation_pipeline.R")
+source("./functions/simulation_pipeline.R")
 
 path <- "/output_dir/" 
 save_param <- paste0(path,"df_param.RDS")

@@ -4,7 +4,7 @@ library(purrr)
 library(DESeq2)
 library(parallel)
 library(tictoc)
-source("read_counts_gen.R")
+source("./functions/read_counts_gen.R")
 
 # Inputs
 #' @param ncpus: Number of CPUs to be used in parallel.
