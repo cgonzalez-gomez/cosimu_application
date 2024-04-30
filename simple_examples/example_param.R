@@ -39,7 +39,7 @@ mod_transition <- "default"
 transition_mat <- NULL
 submod_transition <- "cop"
 copula_submod <- "Frank"
-rho_submod <- 0.9
+rho_submod <- 0.8
 eps_submod <- 1e-3
 optim_method_submod <- "Brent"
 proba_transition <- "deterministic"

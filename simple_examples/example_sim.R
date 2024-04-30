@@ -38,9 +38,9 @@ parallel::mc.reset.stream()
 list_secondary_sign <- parallel::mclapply(
   seq(1,(length(secondary_param)*length(list_primary_sign))),function(i){
     param <- secondary_param[[idx_s[i]]]
-    ind_base <- list_ind_base[[idx_p[i]]]
+    prim_sig <- list_primary_sign[[idx_p[i]]]
     obj <- SecondarySignatureObj$new(
-      prim_sig_obj = ind_base, mod_transition = param$mod_transition,
+      prim_sig_obj = prim_sig, mod_transition = param$mod_transition,
       submod_transition = param$submod_transition,
       proba_transition = param$proba_transition,
       qf_vect_up = param$qf_vect_up, qf_vect_nr = param$qf_vect_nr,
@@ -60,7 +60,7 @@ list_secondary_sign <- parallel::mclapply(
       down_means = param$down_means,
       ncpus = ncpus)
     return(obj)
-  }, mc.cores = min(length(secondary_param), ncpus_secondary), mc.set.seed = TRUE
+  }, mc.cores = min(length(secondary_param), ncpus), mc.set.seed = TRUE
 )
 
 # Save the signatures matrix 

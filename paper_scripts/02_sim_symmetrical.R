@@ -2,14 +2,14 @@
 
 # Imports
 library(purrr)
-source("./functions/simulation_pipeline.R")
+source("./paper_scripts/simulation_pipeline.R")
 
-path <- "/output_dir/" 
+path <- "./paper_scripts/RDS_symmetrical" 
 save_param <- paste0(path,"df_param.RDS")
 base_seed <- 19
 
 # Load distribution parameters inferred from real data
-dist <- cosimu::load_dist("data/real_symmetrical_dist.yml")
+dist <- cosimu::load_dist("./data/real_symmetrical_dist.yml")
 
 # Random number generator
 RNGkind("L'Ecuyer-CMRG")

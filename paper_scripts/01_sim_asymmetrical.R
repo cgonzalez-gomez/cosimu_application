@@ -3,9 +3,9 @@
 # Imports
 library(purrr)
 library(tictoc)
-source("simulation_pipeline.R")
+source("./paper_scripts/simulation_pipeline.R")
 
-path <- "/output_dir/" 
+path <- "./paper_scripts/RDS_asymmetrical" 
 save_param <- paste0(path,"df_param.RDS")
 base_seed <- 15
 

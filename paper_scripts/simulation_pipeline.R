@@ -4,7 +4,6 @@ library(purrr)
 library(DESeq2)
 library(parallel)
 library(tictoc)
-source("./functions/read_counts_gen.R")
 
 # Inputs
 #' @param ncpus: Number of CPUs to be used in parallel.
@@ -342,7 +341,7 @@ simulation_pipeline <- function(ncpus, nb_genes, ind_param,inter_param,
   cts <- mclapply(chunks,function(chunk){
     df <-  
       purrr::map2_dfc(seq(1,num_reps),p_nb_mol_list[chunk], 
-                      ~read_counts_gen(p_nb_mol=.y,
+                      ~cosimu::read_counts_gen(p_nb_mol=.y,
                                        fold_changes = cbind(fc_mat[,chunk[.x]],
                                                             df_base_fc[,.x]),
                                        TP_analysis = TP_analysis,

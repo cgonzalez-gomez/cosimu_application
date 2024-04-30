@@ -37863,7 +37863,7 @@ signatures:
     - 0.3135124
     submod_transition: cop
     copula_submod: Frank
-    rho_submod: 0.9
+    rho_submod: 0.8
     eps_submod: 0.001
     optim_method_submod: Brent
     proba_transition: deterministic
