@@ -33,8 +33,8 @@ library(tictoc)
 #' @param num_reads: (int) Expected number of reads in each experiment 
 #' (inherited from `read_count_gen.R`).
 #' @param TP_analysis: Boolean set to TRUE if a 3'-RNASeq analysis
-#' parametrization is considered (inherited from `read_count_gen.R`)
-#' @param size_factor: (inherited from `read_count_gen.R`)
+#' parametrization is considered (inherited from `cosimu::read_count_gen`)
+#' @param size_factor: (inherited from `cosimu::read_count_gen`)
 #' @param length_ent : gene or transcripts lengths (inherited from 
 #' `read_count_gen.R`)
 #' @param save_counts: Path to save the simulated read counts matrix.
@@ -327,6 +327,7 @@ simulation_pipeline <- function(ncpus, nb_genes, ind_param,inter_param,
     if(return_res) glob_res$p_nb_mol_list <- p_nb_mol_list
   }
   ########################### READ COUNTS GENERATION ########################### 
+  tictoc::tic("Read Counts generation")
   set.seed(seeds[4])
   parallel::mc.reset.stream()
   # matrix of ones, not noise added for technical replicates
@@ -354,11 +355,13 @@ simulation_pipeline <- function(ncpus, nb_genes, ind_param,inter_param,
     colnames(df) <- c(colnames(fc_mat[,chunk]),colnames(df_base_fc))
     return(as.matrix(df))
   },mc.cores = min(length(chunks),ncpus), mc.set.seed = TRUE )
+  tictoc::toc()
   if(!is.null(save_counts)){
     saveRDS(cts, save_counts)   
   } 
   if(return_res) glob_res$cts <- cts 
   ###################### DIFFERENTIAL EXPRESSION ANALYSIS ######################
+  tictoc::tic("DESeq2")
   if(DE_analysis){
     if (paired){
       design = "~ condition + donnor"
@@ -381,6 +384,7 @@ simulation_pipeline <- function(ncpus, nb_genes, ind_param,inter_param,
                      independentFiltering = TRUE) 
       return(res)
     },mc.cores = min(length(cts),ncpus), mc.set.seed = TRUE )
+    tictoc::toc()
     if(return_res){
       glob_res$deseq_DEA <- deseq_res
     }

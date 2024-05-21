@@ -1,4 +1,4 @@
-#### ATTENTION : the paths are noy updated in this script ####
+#### ATTENTION : the paths are not updated in this script ####
 
 library(purrr)
 

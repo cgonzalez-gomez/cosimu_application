@@ -6,17 +6,20 @@ The scripts used to generate the simulated data from the paper are located in th
 ### 1 - Inference of Parameters
 Firstly (00_infer_params.R), two parametrizations were inferred (real_asymmetrical_dist.yml and real_symmetrical_dist.yml) from the log fold change distribution of real data (GSE185985 - TLN468 treatment). Additionally, the number of transcripts per gene, proportional to the true values, was inferred from real data (GSE185985).
 
-### 2- Simulation Pipeline Execution
-Secondly, the simulation pipeline (simulation_pipeline.R), which integrates cosimu for read counts generation and DEA, was executed for two different parametrizations: asymmetrical (01_sim_asymmetrical.R) and symmetrical (02_sim_symmetrical.R). After the simulation, the data was formatted for further analysis (03_data_formatting.R). All data can be found in the Zenodo repository: [complete].
+### 2- Comparison of real data VS simulated data
+Secondly, we compared the properties between real and simulated data. This comparison was done in two stages. On one hand, we analyzed real data biological replicates (01_real_data_replicates_analysis.R) and then compared correlation between experimental replicates VS the correlation between simulated signatures (02_1_sim_VS_real.R). On the other hand, we compared the log2 fold-change distribution of real and simulated signatures (02_2_sim_VS_real.R).
 
-### 3- Connectivity Score Estimation
-Thirdly, the sbatch commands were run (04_sbatch_scores_asym.sh and 05_sbatch_scores_sym.sh) to estimate seven connectivity scores from the simulated data. These scores were calculated using scripts from the general_scores folder, which call upon scores from the coinf package (https://github.com/cgonzalez-gomez/coinf.git).
+### 3- Simulation Pipeline Execution
+Third, the simulation pipeline (simulation_pipeline.R), which integrates cosimu for read counts generation and DEA, was executed for two different parametrizations: asymmetrical (03_sim_asymmetrical.R) and symmetrical (04_sim_symmetrical.R). After the simulation, the data was formatted for further analysis (03_data_formatting.R). Formatted data can be found in the Zenodo repository: https://zenodo.org/records/11195795.
+
+### 4- Connectivity Score Estimation
+Then, the sbatch commands were run (04_sbatch_scores_asym.sh and 05_sbatch_scores_sym.sh) to estimate seven connectivity scores from the simulated data. These scores were calculated using scripts from the general_scores folder, which call upon scores from the coinf package (https://github.com/cgonzalez-gomez/coinf.git).
 
 The asymmetrical distribution was utilized to generate the benchmark data presented in Figure 5.A (associated with Table S4), and the symmetrical distribution was applied in Figure 5.B and the supplementary Figure S4.
 
-Finally, the file 06_sim_V2_real_data.R presents the correlation analysis conducted to compare experimental data with simulated data.
+Finally, the benchmark results were summarized by calculating and plotting the average precision score (08_avg_precision_score.R). 
 
-### Data associated
+#### Data associated
 - `real_asymmetrical_dist.yml`
 - `real_symmetrical_dist.yml`
 - `real_lfc_data.csv`
