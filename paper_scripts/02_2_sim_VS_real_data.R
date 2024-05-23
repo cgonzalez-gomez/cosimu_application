@@ -6,7 +6,6 @@ library(ggplot2)
 library(purrr)
 source('./paper_scripts/simulation_pipeline.R')
 path_data <- "./downloaded_real_data/" #NEED UPDATE
-path_data <- "~/Documents/signia_backup/real_data_for_corr/"
 deseq_analysis<-function(cts,coldata,design){
   dds <- DESeqDataSetFromMatrix(countData = cts,
                                 colData = coldata,

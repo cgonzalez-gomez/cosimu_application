@@ -7,7 +7,6 @@ library(ggnewscale)
 
 source("./paper_scripts/simulation_pipeline.R")
 path_data <- "./downloaded_real_data/" #NEED UPDATE
-# path_data <- "~/Documents/signia_backup/real_data_for_corr/"
 res_GSE181472 <- readRDS(paste0(path_data,"res_GSE181472.RDS"))
 res_GSE182024 <- readRDS(paste0(path_data,"res_GSE182024.RDS"))
 res_GSE185453 <- readRDS(paste0(path_data,"res_GSE185453.RDS")) #two replicates
