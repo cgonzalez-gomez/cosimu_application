@@ -65,7 +65,7 @@ list_secondary_sign <- parallel::mclapply(
 
 # Save the signatures matrix 
 df_lfc <- cbind(purrr::map_dfc(list_primary_sign, ~ .x$get_lfc_vect()),
-                    purrr::map_dfc(list_secondary_sign, ~.x$lfc))
+                    purrr::map_dfc(list_secondary_sign, ~.x$get_lfc_vect()))
 colnames(df_lfc) <- c(paste0("primary_",seq(1,length(list_primary_sign))),
                           paste0("secondary_",seq(1,length(list_secondary_sign))))
 

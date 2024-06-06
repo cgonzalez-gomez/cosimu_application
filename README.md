@@ -17,7 +17,10 @@ Then, the sbatch commands were run (04_sbatch_scores_asym.sh and 05_sbatch_score
 
 The asymmetrical distribution was utilized to generate the benchmark data presented in Figure 5.A (associated with Table S4), and the symmetrical distribution was applied in Figure 5.B and the supplementary Figure S4.
 
-Finally, the benchmark results were summarized by calculating and plotting the average precision score (08_avg_precision_score.R). 
+Finally, the benchmark results were summarized by calculating and plotting the average precision score (08_avg_precision_score.R). The regression plot (Figure 6) was generated with the script 09_scores_regression.R.
+
+### 5- Cosimu properties
+The simulation to analyze the properties of the cosimu transition parameters, as well as the visualization of the results (Figure 3), was done using the script 10_cosimu_properties.R.
 
 #### Data associated
 - `real_asymmetrical_dist.yml`
